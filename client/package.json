@@ -1,0 +1,32 @@
+{
+  "name": "client2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "2.2.5",
+    "fetch-jsonp": "^1.0.6",
+    "meetup-web-components": "^4.8.2215",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.8",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-intl": "^2.2.3",
+    "react-scripts": "1.1.4",
+    "react-transition-group": "^2.2.1",
+    "swarm-animation": "^0.0.95",
+    "swarm-constants": "^1.2.99",
+    "swarm-icons": "^2.3.301",
+    "swarm-sasstools": "^3.0.312"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3001"
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
