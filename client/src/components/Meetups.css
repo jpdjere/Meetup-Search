@@ -2,3 +2,13 @@
   speak: none;
   display: none;
 }
+
+
+.meetups__name {
+  display:flex;
+  justify-content: space-between;
+}
+
+.meetups__fav {
+  cursor:pointer;
+}

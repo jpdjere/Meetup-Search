@@ -2,9 +2,11 @@ import moment from "moment";
 import React from "react";
 
 import "./Meetups.css";
+import FA from 'react-fontawesome';
 
 import InlineBlockList from "meetup-web-components/lib/layout/InlineBlockList";
 import AvatarMember from "meetup-web-components/lib/media/AvatarMember";
+import Icon from "meetup-web-components/lib/media/Icon";
 
 const Meetup = props => {
   const date = moment(new Date(props.time)).format("h:mmA, dddd");
@@ -14,11 +16,16 @@ const Meetup = props => {
   return (
     <li className="list-item">
       <div className="text--secondary margin--bottom">{date} </div>
-      <h3 className="text--bold">
-        <a href={props.url} target="_blank">
-          {props.name}
-        </a>
-      </h3>
+      <div className="meetups__name">
+        <h3 className="text--bold">
+          <a href={props.url} target="_blank">
+            {props.name}
+          </a>
+        </h3>
+        <FA name="heart" style={{color:'red'}} className="meetups__fav"/>
+      </div>
+      {/* <Icon shape="heart-outline" size="l" color="#F13959"/> */}
+
       <p className="text--caption margin--bottom">{props.group}</p>
       <div className="margin--bottom">
         <InlineBlockList

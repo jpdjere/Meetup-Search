@@ -7,6 +7,7 @@ import Meetups from './components/Meetups';
 import Bounds from 'meetup-web-components/lib/layout/Bounds';
 import Section from 'meetup-web-components/lib/layout/Section';
 import Button from 'meetup-web-components/lib/forms/Button';
+// import Button from 'meetup-web-components/lib/forms/Button';
 
 class App extends Component {
 	constructor(props) {
@@ -65,7 +66,7 @@ class App extends Component {
 		fetch('/api/favourites')
 			.then(res => res.json())
 			.then(data => console.log(data));
-			
+
 		fetch('/api/favourites/32')
 			.then(res => res.json())
 			.then(data => console.log(data));
