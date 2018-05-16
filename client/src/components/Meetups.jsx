@@ -84,6 +84,7 @@ class Meetups extends Component {
 				onDismiss={this.onDismiss}
         closeArea={false}
 				fixed
+        hideHeroScrim
 			>
 				<Stripe style={{padding:'50px'}}><Section hasSeparator className="border--none">
 					<Chunk className="align--center">
@@ -103,8 +104,9 @@ class Meetups extends Component {
   saveFav = (data) =>{
 		axios.post('/api/favourites', data)
 			.then((res) => {
-        this.setState({showModal:true})
-        console.log(res.data)
+        this.props.fetchFavs().then(() => {
+          this.setState({showModal:true})
+        })
       })
 	}
 
@@ -112,8 +114,9 @@ class Meetups extends Component {
     console.log("delete",data.event_url);
 		axios.delete('/api/favourites', {data: {event_url: data.event_url}})
 			.then((res) => {
-        this.setState({showModal:true})
-        console.log(res.data)
+        this.props.fetchFavs().then(() => {
+          this.setState({showModal:true})
+        })
       })
 	}
 
@@ -125,7 +128,10 @@ class Meetups extends Component {
 
           {!this.props.meetups.length && !this.props.error ? (
             <p className="list-item text--error text--bold">
-              We couldn't find anything matching {this.props.query}!
+              {this.props.searchMode ?
+                <span>We couldn't find anything matching {this.props.query}!</span> :
+                <span>You have no favorited events!</span>
+              }
             </p>
           ) : (
             ""

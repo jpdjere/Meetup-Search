@@ -20,7 +20,7 @@ router.post('/favourites', async (req, res, next) => {
   let { event_url } = req.body;
   let existingEvents = await Fav.find({event_url})
   if(existingEvents.length > 0){
-    return res.send({ status:200, recordCreated: "already exisiting - not saved"  });
+    return res.send({ status:200, recordCreated: "Already exisiting - not saved"  });
   }
   let newFav = await new Fav({
     ...req.body
@@ -30,7 +30,6 @@ router.post('/favourites', async (req, res, next) => {
 
 router.delete('/favourites', async (req, res, next) =>  {
   let { event_url } = req.body;
-  console.log(event_url);
   Fav.findOneAndDelete({event_url}, (err,doc) => {
     if(err) return res.send({status:500,err:err})
     return res.send({status:200,message:"Deleted successfully",doc})

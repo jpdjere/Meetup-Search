@@ -21,6 +21,7 @@ class App extends Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.fetchEvents = this.fetchEvents.bind(this);
+		this.fetchFavs = this.fetchFavs.bind(this);
 		this.toggleMode = this.toggleMode.bind(this);
 	}
 
@@ -72,32 +73,37 @@ class App extends Component {
 				});
 			});
 	}
-	componentDidMount() {
-		this.fetchEvents('javascript');
-		fetch('/api/favourites')
-			.then(res => res.json())
-			.then(data => console.log(data));
 
-		fetch('/api/favourites')
+	fetchFavs(){
+		return new Promise((resolve, reject) => {
+			fetch('/api/favourites')
 			.then(res => res.json())
 			.then(data => {
 				this.setState({
 					favs: data.favs
 				})
-			});
+				resolve();
+			})
+			.catch(e => reject(e))
 
+		})
 	}
+
+	componentDidMount() {
+		this.fetchEvents('javascript');
+		this.fetchFavs();
+	}
+
 	handleSubmit(e) {
 		e.preventDefault();
 		this.fetchEvents(document.getElementById('query').value);
 	}
 	render() {
 		return (
-			<div>
+			<div style={{minHeight:'1000px'}}>
 				<Section>
 					<Bounds className="align--center">
 						<img src={meetup_logo} className="logo" alt="logo" />
-						<p onClick={() => this.toggleMode()}>favourite {this.state.searchMode}</p>
 					</Bounds>
 				</Section>
 				<Section>
@@ -124,9 +130,18 @@ class App extends Component {
 				</Section>
 				<Section>
 					<Bounds>
-						<h1 className="text--display1 margin--bottom">
-							{this.state.searchMode ? this.state.query: "Your Favourite"} Meetups
-						</h1>
+						<div style={{display:'flex',justifyContent:'space-between'}}>
+							<h1 className="text--display1 margin--bottom">
+								{this.state.searchMode ? this.state.query : "Your Favorite"} Meetups
+							</h1>
+							<Button
+								className="button--secondary"
+								onClick={() => this.toggleMode()}
+								style={{height:'50px'}}
+							>
+								{this.state.searchMode ? "Favorites" : "Search for Meetups"}
+							</Button>
+						</div>
 						{this.state.error ? (
 							<p className="text--error text--bold">
 								Looks like something went wrong…
@@ -142,6 +157,7 @@ class App extends Component {
 								error={this.state.error}
 								meetups={this.state.searchMode ? this.state.meetups : this.state.favs}
 								searchMode={this.state.searchMode}
+								fetchFavs={this.fetchFavs}
 							/>
 						)}
 					</Bounds>
