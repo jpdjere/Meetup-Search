@@ -15,7 +15,7 @@ The React Frontend, created using [`create-react-app`](https://github.com/facebo
 ### Node/Express Backend
 
 * [Axios HTTP Client](https://github.com/axios/axios)
-* [Mongoose](https://github.com/Automattic/mongoose) -- MongoDB object modeling designed to work in an asynchronous environment. 
+* [Mongoose](https://github.com/Automattic/mongoose) -- MongoDB object modeling designed to work in an asynchronous environment.
 
 ### React Frontend
 
@@ -37,11 +37,11 @@ The React Frontend, created using [`create-react-app`](https://github.com/facebo
 
 ## Deploy to production
 
-1. In the `client` subdirectory, create a production build with `npm run build`.
-1. Express was configured to point to the `build` directory on the `app.js` file.
+1. In the `client` subdirectory, create a production build with `yarn run build`.
+1. Express was configured to point to the `build` directory in the `app.js` file.
 1. Deploy your Node app and Express will automatically point to your React build.
 1. You can see the production build by starting the Node/Express server and navigating to `localhost:3001`.
 
 ## Author
 
-* [**Juan Pablo Djeredjian:**](https://github.com/jpdjere)
+* [**Juan Pablo Djeredjian**](https://github.com/jpdjere)
