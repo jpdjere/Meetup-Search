@@ -21,6 +21,7 @@ class App extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.fetchEvents = this.fetchEvents.bind(this);
 	}
+
 	fetchEvents(search_term) {
 		this.setState({
 			meetups: [],
@@ -68,10 +69,6 @@ class App extends Component {
 			.then(data => console.log(data));
 
 		fetch('/api/favourites/32')
-			.then(res => res.json())
-			.then(data => console.log(data));
-
-		fetch('/api/favourites/42',{method:"POST"})
 			.then(res => res.json())
 			.then(data => console.log(data));
 
@@ -128,6 +125,7 @@ class App extends Component {
 								query={this.state.query}
 								error={this.state.error}
 								meetups={this.state.meetups}
+								saveFav={this.saveFav}
 							/>
 						)}
 					</Bounds>

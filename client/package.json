@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "2.2.5",
     "fetch-jsonp": "^1.0.6",
     "meetup-web-components": "^4.8.2215",
@@ -17,7 +18,8 @@
     "swarm-animation": "^0.0.95",
     "swarm-constants": "^1.2.99",
     "swarm-icons": "^2.3.301",
-    "swarm-sasstools": "^3.0.312"
+    "swarm-sasstools": "^3.0.312",
+    "sweetalert": "^2.1.0"
   },
   "proxy": {
     "/api": {
