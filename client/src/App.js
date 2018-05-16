@@ -17,9 +17,19 @@ class App extends Component {
 			query: 'javascript',
 			loading: false,
 			error: false,
+			searchMode:true
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.fetchEvents = this.fetchEvents.bind(this);
+		this.toggleMode = this.toggleMode.bind(this);
+	}
+
+	toggleMode(){
+		this.setState(prevState => {
+			return {
+				searchMode: !prevState.searchMode
+			}
+		})
 	}
 
 	fetchEvents(search_term) {
@@ -68,13 +78,13 @@ class App extends Component {
 			.then(res => res.json())
 			.then(data => console.log(data));
 
-		fetch('/api/favourites/32')
+		fetch('/api/favourites')
 			.then(res => res.json())
-			.then(data => console.log(data));
-
-		fetch('/api/favourites/52',{method:"DELETE"})
-			.then(res => res.json())
-			.then(data => console.log(data));
+			.then(data => {
+				this.setState({
+					favs: data.favs
+				})
+			});
 
 	}
 	handleSubmit(e) {
@@ -87,6 +97,7 @@ class App extends Component {
 				<Section>
 					<Bounds className="align--center">
 						<img src={meetup_logo} className="logo" alt="logo" />
+						<p onClick={() => this.toggleMode()}>favourite {this.state.searchMode}</p>
 					</Bounds>
 				</Section>
 				<Section>
@@ -98,10 +109,15 @@ class App extends Component {
 									type="text"
 									name="query"
 									placeholder="Find some Meetups..."
+									disabled={this.state.searchMode ? false : true}
 								/>
 							</div>
 							<div className="row-item chunk row-item--shrink">
-								<Button className="button--primary">Search</Button>
+								<Button
+									className="button--primary"
+									disabled={this.state.searchMode ? false : true}
+									>Search
+								</Button>
 							</div>
 						</div>
 					</form>
@@ -109,7 +125,7 @@ class App extends Component {
 				<Section>
 					<Bounds>
 						<h1 className="text--display1 margin--bottom">
-							{this.state.query} Meetups
+							{this.state.searchMode ? this.state.query: "Your Favourite"} Meetups
 						</h1>
 						{this.state.error ? (
 							<p className="text--error text--bold">
@@ -124,8 +140,8 @@ class App extends Component {
 							<Meetups
 								query={this.state.query}
 								error={this.state.error}
-								meetups={this.state.meetups}
-								saveFav={this.saveFav}
+								meetups={this.state.searchMode ? this.state.meetups : this.state.favs}
+								searchMode={this.state.searchMode}
 							/>
 						)}
 					</Bounds>

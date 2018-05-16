@@ -28,7 +28,10 @@ const Meetup = props => {
             {props.name}
           </a>
         </h3>
-        <FA name="heart" style={{color:'red'}} className="meetups__fav" onClick={() => props.saveFav({...props})}/>
+        {props.searchMode ?
+        <FA name="heart" style={{color:'red'}} className="meetups__fav" onClick={() => props.saveFav({...props.meetupData})}/> :
+        <FA name="trash" style={{color:'black'}} className="meetups__fav" onClick={() => props.deleteFav({...props.meetupData})}/>
+        }
       </div>
       {/* <Icon shape="heart-outline" size="l" color="#F13959"/> */}
 
@@ -105,6 +108,15 @@ class Meetups extends Component {
       })
 	}
 
+  deleteFav = (data) =>{
+    console.log("delete",data.event_url);
+		axios.delete('/api/favourites', {data: {event_url: data.event_url}})
+			.then((res) => {
+        this.setState({showModal:true})
+        console.log(res.data)
+      })
+	}
+
   render(){
     return (
       <div>
@@ -129,6 +141,9 @@ class Meetups extends Component {
                 rsvpCount={meetup.yes_rsvp_count}
                 rsvpers={meetup.rsvp_sample}
                 saveFav={this.saveFav}
+                deleteFav={this.deleteFav}
+                meetupData={meetup}
+                searchMode={this.props.searchMode}
               />
             );
           })}
