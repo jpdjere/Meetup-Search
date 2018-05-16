@@ -88,8 +88,9 @@ class Meetups extends Component {
 			>
 				<Stripe style={{padding:'50px'}}><Section hasSeparator className="border--none">
 					<Chunk className="align--center">
-						<h2>Event saved as favourite!</h2>
-						<p>Now you can see it in your event wishlist</p>
+						{this.props.searchMode ? <h2>Event saved as favourite!</h2> : <h2>Event removed from your favorites!</h2>}
+						{this.props.searchMode ? <p>Now you can see it in your event wishlist</p> : null}
+
 					</Chunk>
 					<div className='row align--center margin--top'>
 						<div className='row-item'>
