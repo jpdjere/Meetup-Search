@@ -105,20 +105,18 @@ class Meetups extends Component {
   saveFav = (data) =>{
 		axios.post('/api/favourites', data)
 			.then((res) => {
-        this.props.fetchFavs().then(() => {
-          this.setState({showModal:true})
-        })
+        this.props.fetchFavs();
       })
+      this.setState({showModal:true})
 	}
 
   deleteFav = (data) =>{
     console.log("delete",data.event_url);
 		axios.delete('/api/favourites', {data: {event_url: data.event_url}})
 			.then((res) => {
-        this.props.fetchFavs().then(() => {
-          this.setState({showModal:true})
-        })
+        this.props.fetchFavs();
       })
+      this.setState({showModal:true})
 	}
 
   render(){
