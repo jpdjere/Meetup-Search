@@ -1,10 +1,10 @@
-# GitHub Repo Search (TA Frontend Assignment)
+# Meetup Event Search
 
-[https://github-repo-search.herokuapp.com/](https://github-repo-search.herokuapp.com/)
+[https://github.com/jpdjere/Meetup-Search](https://github.com/jpdjere/Meetup-Search)
 
-A web app for searching Github repos, list them by popularity and list their top contributors. Uses Github Developer API v3.
+A web app for searching and favoriting Meetup events. Uses Meetup API.
 
-Based on the [Express + React starter boilerplate](https://github.com/jpdjere/ExpressReactStarterProject), which is in turn based on Express Generator and Facebook Incubators' Create-React-App.
+Uses Express Generator for Node/Express backend boilerplate and Facebook's create-react-app for the React Frontend.
 
 The Express server runs on `port: 3001` and the React Frontend on `port: 3000`.
 
@@ -14,20 +14,17 @@ The React Frontend, created using [`create-react-app`](https://github.com/facebo
 
 ### Node/Express Backend
 
-* [GitHub REST API client for Node.js](https://github.com/octokit/rest.js)
 * [Axios HTTP Client](https://github.com/axios/axios)
+* [Mongoose](https://github.com/Automattic/mongoose) -- MongoDB object modeling designed to work in an asynchronous environment. 
 
 ### React Frontend
 
-* [React-Redux](https://github.com/reactjs/redux): Predictable state container for JavaScript apps
-* [Redux-Thunk](https://github.com/gaearon/redux-thunk): Thunk middleware for Redux
-* [React-Router](https://github.com/ReactTraining/react-router): Declarative routing for React
-* [Redux-Form](https://github.com/erikras/redux-form): A Higher Order Component using react-redux to keep form state in a Redux store
-* [Material-UI](https://github.com/mui-org/material-ui): React components that implement Google's Material Design.
-* [React-Transition-Group](https://github.com/reactjs/react-transition-group/tree/v1-stable): An easy way to perform animations when a React component enters or leaves the DOM.
-* [React-FontAwesome](https://github.com/danawoodman/react-fontawesome): A React Font Awesome component.
-* [React-Emoji-Render](https://github.com/tommoor/react-emoji-render): Normalize and render emoji's the way your users expect.
-
+* [react](https://facebook.github.io/react/) -- React.
+* [fetch-jsonp](https://github.com/camsong/fetch-jsonp)
+* [meetup-web-components](https://github.com/meetup/meetup-web-components) -- A set of React components from Meetup to build Meetup-like UIs.
+* [swarm-sasstools](https://meetup.github.io/swarm-sasstools/seldon/doc.html) -- Sass/CSS library that goes along with Meetup's web components.
+* [Meetup's API](https://www.meetup.com/meetup_api/) -- Specifically [OpenEvents](https://www.meetup.com/meetup_api/docs/2/open_events/)
+* [React-FontAwesome](https://github.com/danawoodman/react-fontawesome) -- A React Font Awesome wrapper.
 
 ## Development Instructions
 
